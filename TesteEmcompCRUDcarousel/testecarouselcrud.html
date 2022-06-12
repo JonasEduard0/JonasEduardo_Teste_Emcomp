@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">         <!--Seleciono a lingua portugues-Brasil-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+</head>
+<body>
+    <div class="carrossel">                           <!--Na div de classe carrossel eu adiciono todas as divs-->
+        <div class="container" id="img">              <!--Na div de classe container adiciono todas imagens utilizadas no carrossel-->
+            <img src="ifet.png" alt="">  
+            <img src="campus.jpeg" alt="">
+            <img src="download.jpeg" alt="">
+            <img src="localizacao.jpeg" alt="">
+            <img src="sala.jpeg" alt="">
+        </div>
+    </div>
+
+<style>                                              /*Em style,utilizando CSS,eu personalizo as classes e o site */
+    *{
+        box-sizing: border-box;
+    }
+
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    .carrossel{
+        box-shadow: 2px 2px 4px black;
+        overflow: hidden;
+        height: 500px;
+        width: 500px;
+    }
+
+    .container{
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        transform: translateX(0);
+    }
+
+    img{
+        object-fit: cover;
+        height: 500px;
+        width: 500px;
+    }
+</style>
+</body>
+
+<script>                                               /*Parte do JavaScript*/
+    const imgs = document.getElementById("img");
+    const img = document.querySelectorAll("#img img"); /*Nestes dois eu menciono as imagens que quero no carrossel*/
+
+    let idx = 0;
+
+    function carrossel(){                              /*Aqui permito com que as imagens mudem constantemente com o tempo a ser selecionado abaixo*/
+            idx++;
+
+    if (idx > img.length - 1) {                        /*Se as imagens chegarem ao fim,elas voltam para a primeira*/                            
+                idx = 0;
+    }
+        
+    imgs.style.transform = `translateX(${-idx * 500}px)`;
+     }
+
+    setInterval(carrossel, 1800);                    /*Aqui faço com que as imagens tenham um intervalo de 1800ms para aparecerem */
+</script>
+</html>
